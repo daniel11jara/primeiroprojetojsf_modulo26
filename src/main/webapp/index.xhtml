@@ -10,19 +10,9 @@
 <h:body>
 
 	<h:form id="formPessoa">
-		Nome:
-		<h:inputText id="campoNome" value = "#{pessoaBeans.nome}"/>
-
-		<h:commandButton value = "Adicionar nome" action = "#{pessoaBeans.addNome}" binding="#{pessoaBeans.commandButton}"/>
 		
-		<h:dataTable value = "#{pessoaBeans.nomes}" var = "nome"> 
-		
-		<h:column>
-			<h:outputText value = "#{nome}" />
-		</h:column>
-		
-		
-		</h:dataTable>
+		<h1>Olá JSF página index.jsf</h1>
+		<h:commandButton value = "Navegar"  action = "primeirapagina2"/>
 
 	</h:form>
 </h:body>
