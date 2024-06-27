@@ -5,6 +5,14 @@
 
 <h:head>
 	<title>Olá2</title>
+	
+	<script>
+		function alterarValorDoCampo(){
+			alert('clicou')
+		}
+	
+	</script>
+	
 </h:head>
 
 <h:body>
@@ -12,7 +20,13 @@
 	<h:form id="formPessoa">
 		
 		<h1>Olá JSF página index.jsf</h1>
+		<h:inputText id = "nome"/>
+		<h:commandButton  value = "clicar" onclick="alterarValorDoCampo()" />
+		
+		
 		<h:commandButton value = "Navegar"  action = "primeirapagina2"/>
+		 
+		<h:commandButton value = "Navegar Explicita"  action = "explicita"/>
 
 	</h:form>
 </h:body>
