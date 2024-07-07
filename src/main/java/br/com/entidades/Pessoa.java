@@ -5,20 +5,26 @@ import java.util.Date;
 import java.util.Objects;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity//transforma a classe em tabela no banco
 public class Pessoa implements Serializable{
 	
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
+	
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)//gera o primary key automático
 	private Long id;//no banco de dados é usado o id para separar os registros
 	private String nome;
 	private String sobrenome;
 	private Integer idade;
+	
+	@Temporal(TemporalType.DATE)
 	private Date dataNascimento;
 	
 	
