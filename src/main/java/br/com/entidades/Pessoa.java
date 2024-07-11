@@ -11,7 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-@Entity//transforma a classe em tabela no banco
+//transforma a classe em tabela no banco
+@Entity
 public class Pessoa implements Serializable{
 	
 	
