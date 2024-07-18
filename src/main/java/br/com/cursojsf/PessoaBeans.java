@@ -8,50 +8,39 @@ import javax.faces.bean.RequestScoped;
 import javax.faces.bean.ViewScoped;
 import javax.faces.component.html.HtmlCommandButton;
 
+import br.com.DAO.DaoGeneric;
+import br.com.entidades.Pessoa;
+
  
 @ManagedBean(name = "pessoaBeans")
 @ViewScoped
 public class PessoaBeans {
 	
-	private String nome;
-	private List<String> nomes = new ArrayList<String>();
-	private HtmlCommandButton commandButton;
+	private Pessoa pessoa = new Pessoa();
+	private DaoGeneric<Pessoa> daoGeneric = new DaoGeneric<Pessoa>();
 	
-	
-	public String addNome() {
-		nomes.add(nome);//adicionando o nomes na lista
+	public String salvar() {
+		daoGeneric.salvar(pessoa);
 		
-		if (nomes.size() > 3) {//quando for maior que 3
-			commandButton.setDisabled(true);//disabilita o botão
-			return "paginanavegada?faces-redirect=true";//vai para a página -- navegação dinâmica aula 33
-		}
-		
-		return "";//e vai ficar na mesma página
+		return "";
+	}
+
+	public Pessoa getPessoa() {
+		return pessoa;
+	}
+
+	public void setPessoa(Pessoa pessoa) {
+		this.pessoa = pessoa;
+	}
+
+	public DaoGeneric<Pessoa> getDaoGeneric() {
+		return daoGeneric;
+	}
+
+	public void setDaoGeneric(DaoGeneric<Pessoa> daoGeneric) {
+		this.daoGeneric = daoGeneric;
 	}
 	
-	public void setNomes(List<String> nomes) {
-		this.nomes = nomes;
-	}
-	
-	public List<String> getNomes() {
-		return nomes;
-	}
-
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
-	public HtmlCommandButton getCommandButton() {
-		return commandButton;
-	}
-
-	public void setCommandButton(HtmlCommandButton commandButton) {
-		this.commandButton = commandButton;
-	}
 
 	
 	

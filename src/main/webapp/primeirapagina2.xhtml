@@ -10,20 +10,24 @@
 <h:body>
 
 	<h:form id="formPessoa">
-		Nome:
-		<h:inputText id="campoNome" value = "#{pessoaBeans.nome}"/>
+		
+		<h:outputLabel value = "Nome"/>
+		<h:inputText value = "#{pessoaBeans.pessoa.nome}"></h:inputText>
+		
+		<br/>
+		<h:outputLabel value = "Sobrenome"/>
+		<h:inputText value = "#{pessoaBeans.pessoa.sobrenome}"></h:inputText>
+		
+		<br/>
+		<h:outputLabel value = "Idade"/>
+		<h:inputText value = "#{pessoaBeans.pessoa.idade}"></h:inputText>
+		
+		<br/>
+		<h:outputLabel value = "Data de Nascimeto"/>
+		<h:inputText value = "#{pessoaBeans.pessoa.dataNascimento}"></h:inputText>
 
-		<h:commandButton value = "Adicionar nome" action = "#{pessoaBeans.addNome}" binding="#{pessoaBeans.commandButton}"/>
-		
-		<h:dataTable value = "#{pessoaBeans.nomes}" var = "nome"> 
-		
-		<h:column>
-			<h:outputText value = "#{nome}" />
-		</h:column>
-		
-		
-		</h:dataTable>
-
+		<br/>
+		<h:commandButton value = "Salvar" action="#{pessoaBeans.salvar}"></h:commandButton>
 	</h:form>
 </h:body>
 </html>
