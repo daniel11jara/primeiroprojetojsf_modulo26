@@ -20,8 +20,19 @@ public class PessoaBeans {
 	private DaoGeneric<Pessoa> daoGeneric = new DaoGeneric<Pessoa>();
 	
 	public String salvar() {
-		daoGeneric.salvar(pessoa);
+		pessoa = daoGeneric.merge(pessoa);
+		//pessoa = new Pessoa();//instancia uma nova pessoa depois que salva - o formulário fica limpo
+		return "";
+	}
+	
+	public String novo() {
 		pessoa = new Pessoa();
+		return "";
+	}
+	
+	public String remove() {//aula 28.15
+		daoGeneric.deletePorId(pessoa);
+		pessoa = new Pessoa();//deixando os inputs em branco depois que remove
 		return "";
 	}
 

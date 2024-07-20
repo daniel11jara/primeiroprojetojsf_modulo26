@@ -17,5 +17,10 @@ public class JPAUtil {//classe responsável pela persistência
 	public static EntityManager getEntityManager() {
 		return factory.createEntityManager();
 	}
+	
+	public static Object getPrimaryKey(Object entity) {//aula 28.15
+		return factory.getPersistenceUnitUtil().getIdentifier(entity);
+		
+	}
 
 }

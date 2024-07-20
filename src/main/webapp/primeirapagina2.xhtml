@@ -10,7 +10,11 @@
 <h:body>
 
 	<h:form id="formPessoa">
+	
+		<h:outputLabel value = "Id"/>
+		<h:inputText value = "#{pessoaBeans.pessoa.id}" readonly="true"></h:inputText>
 		
+		<br/>
 		<h:outputLabel value = "Nome"/>
 		<h:inputText value = "#{pessoaBeans.pessoa.nome}"></h:inputText>
 		
@@ -27,7 +31,9 @@
 		<h:inputText value = "#{pessoaBeans.pessoa.dataNascimento}"></h:inputText> -->
 
 		<br/>
+		<h:commandButton value = "Novo" action="#{pessoaBeans.novo}"></h:commandButton>
 		<h:commandButton value = "Salvar" action="#{pessoaBeans.salvar}"></h:commandButton>
+		<h:commandButton value = "Remove" action="#{pessoaBeans.remove}"></h:commandButton>
 	</h:form>
 </h:body>
 </html>
