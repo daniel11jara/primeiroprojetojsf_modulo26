@@ -51,20 +51,50 @@ public class DaoGeneric<E> {
 
 	}
 	
-	public void deletePorId(E entidade) {// aula 28.15
+	/*
+	 * public void deletePorId(E entidade) {// aula 28.15
+	 * 
+	 * EntityManager entityManager = JPAUtil.getEntityManager(); EntityTransaction
+	 * entityTransaction = entityManager.getTransaction();
+	 * entityTransaction.begin();
+	 * 
+	 * Object id = JPAUtil.getPrimaryKey(entidade);
+	 * entityManager.createQuery("delete from " +
+	 * entidade.getClass().getCanonicalName() + " where id  = " +
+	 * id).executeUpdate();
+	 * 
+	 * entityManager.remove(entidade);
+	 * 
+	 * entityTransaction.commit();
+	 * 
+	 * entityManager.close();
+	 * 
+	 * }
+	 */
+	
+	public void deletePorId(E entidade) {
 
-		EntityManager entityManager = JPAUtil.getEntityManager();
-		EntityTransaction entityTransaction = entityManager.getTransaction();
-		entityTransaction.begin();
+	    EntityManager entityManager = JPAUtil.getEntityManager();
+	    EntityTransaction entityTransaction = entityManager.getTransaction();
+	    entityTransaction.begin();
 
-		Object id = JPAUtil.getPrimaryKey(entidade);
-		entityManager.createQuery("delete from " + entidade.getClass().getCanonicalName() + " where id  = " + id).executeUpdate();
-		
-		entityManager.remove(entidade);
+	    try {
+	        Object id = JPAUtil.getPrimaryKey(entidade);
 
-		entityTransaction.commit();
+	        // Buscar a entidade pelo ID
+	        E managedEntity = (E) entityManager.find(entidade.getClass(), id);
 
-		entityManager.close();
+	        if (managedEntity != null) {
+	            entityManager.remove(managedEntity);
+	        }
 
+	        entityTransaction.commit();
+	    } catch (Exception e) {
+	        entityTransaction.rollback();
+	        e.printStackTrace();
+	    } finally {
+	        entityManager.close();
+	    }
 	}
+
 }
