@@ -10,55 +10,73 @@
 <h:body>
 
 	<h:form id="formPessoa">
-	
+		
+		<h:panelGrid columns = "2">
+		<f:facet name="header">
+		<h:outputText value = "Cadastro em jsf"></h:outputText>
+		</f:facet>
+		
 		<h:outputLabel value = "Id"/>
 		<h:inputText value = "#{pessoaBeans.pessoa.id}" readonly="true"></h:inputText>
 		
-		<br/>
 		<h:outputLabel value = "Nome"/>
 		<h:inputText value = "#{pessoaBeans.pessoa.nome}"></h:inputText>
 		
-		<br/>
 		<h:outputLabel value = "Sobrenome"/>
 		<h:inputText value = "#{pessoaBeans.pessoa.sobrenome}"></h:inputText>
 		
-		<br/>
 		<h:outputLabel value = "Idade"/>
 		<h:inputText value = "#{pessoaBeans.pessoa.idade}"></h:inputText>
 		
-		<br/>
-		<!-- <h:outputLabel value = "Data de Nascimeto"/>
-		<h:inputText value = "#{pessoaBeans.pessoa.dataNascimento}"></h:inputText> -->
-
-		<br/>
+		<h:outputText/>
+		<h:panelGroup>
 		<h:commandButton value = "Novo" action="#{pessoaBeans.novo}"></h:commandButton>
 		<h:commandButton value = "Salvar" action="#{pessoaBeans.salvar}"></h:commandButton>
 		<h:commandButton value = "Remove" action="#{pessoaBeans.remove}"></h:commandButton>
+		</h:panelGroup>
 		
-		<h:dataTable value = "#{pessoaBeans.pessoas}" var = "pessoa">
+		<!-- <h:outputLabel value = "Data de Nascimeto"/>
+		<h:inputText value = "#{pessoaBeans.pessoa.dataNascimento}"></h:inputText> -->
+
+		</h:panelGrid>
+		
+		
+		<h:dataTable value = "#{pessoaBeans.pessoas}" var = "pessoa"  border = "1" cellpadding="6">
+		<f:facet name="header">
+		Lista de Pessoas Cadastradas
+		</f:facet>
+		
+		
 			<h:column>
+			<f:facet name="header">ID</f:facet>
 				<h:outputText value = "#{pessoa.id}"></h:outputText>
 			</h:column>
 			
 			<h:column>
+			<f:facet name="header">Nome</f:facet>
 				<h:outputText value = "#{pessoa.nome}"></h:outputText>
 			</h:column>
 			
 			<h:column>
+			<f:facet name="header">Sobrenome</f:facet>
 				<h:outputText value = "#{pessoa.sobrenome}"></h:outputText>
 			</h:column>
 			
 			<h:column>
-			<h:commandLink value = "Editar">
+			<f:facet name="header">Editar</f:facet>
+			<h:commandLink value = "Editar"  style = "width:200px">
 				<f:setPropertyActionListener value="#{pessoa}" target="#{pessoaBeans.pessoa}"/>
 			</h:commandLink>
 			</h:column>
 			
 			<h:column>
+			<f:facet name="header">Excluir</f:facet>
 			<h:commandLink value = "Excluir" action = "#{pessoaBeans.remove}">
 				<f:setPropertyActionListener value="#{pessoa}" target="#{pessoaBeans.pessoa}"/>
 			</h:commandLink>
 			</h:column>
+			
+			
 		</h:dataTable>
 		
 		
