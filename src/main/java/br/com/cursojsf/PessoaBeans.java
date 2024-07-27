@@ -13,8 +13,8 @@ import br.com.DAO.DaoGeneric;
 import br.com.entidades.Pessoa;
 
  
-@ManagedBean(name = "pessoaBeans")
-@ViewScoped
+@ManagedBean(name = "pessoaBeans")//facilita a ligação entre usuário e a lógica de aplicação
+@ViewScoped//preserva os dados do usuario enquanto permanece na página
 public class PessoaBeans {
 	
 	private Pessoa pessoa = new Pessoa();
@@ -40,7 +40,7 @@ public class PessoaBeans {
 		return "";
 	}
 	
-	@PostConstruct
+	@PostConstruct//centraliza a lógica de inicialização em único método 
 	public void carregarPessoas() {//aula 28.17
 		pessoas = daoGeneric.getListEntity(Pessoa.class);
 	}
