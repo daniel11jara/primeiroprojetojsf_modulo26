@@ -32,11 +32,32 @@
 		<h:outputLabel value = "Idade"/>
 		<h:inputText value = "#{pessoaBeans.pessoa.idade}"></h:inputText>
 		
+		<h:outputLabel value = "Sexo"/>
+		<h:selectOneMenu id = "campoSexo"  value="#{pessoaBeans.pessoa.sexo}" required="false">
+			<f:selectItem itemValue="NAO" itemLabel="-Selecione-"  noSelectionOption="true"/>
+			<f:selectItem itemValue="M" itemLabel="Sexo Masculino"/>
+			<f:selectItem itemValue="F" itemLabel="Sexo Feminino" />
+		</h:selectOneMenu>
+		
+		<h:outputLabel value = "Framewoks"/>
+		<h:selectManyMenu id = "campoframework"  style="height:150px;" value="#{pessoaBeans.pessoa.frameworks}" >
+			<f:selectItem itemValue="Hibernate" />
+			<f:selectItem itemValue="Spring MVC" />
+			<f:selectItem itemValue="JPA" />
+			<f:selectItem itemValue="Primefaces" />
+			<f:selectItem itemValue="JSF" />
+		</h:selectManyMenu>
+		
+		<h:outputLabel value = "Ativo:"/>
+		<h:selectBooleanCheckbox value="#{pessoaBeans.pessoa.ativo}"/>
+		
+		
 		<h:outputText/>
 		<h:panelGroup>
 		<h:commandButton value = "Novo" action="#{pessoaBeans.novo}"></h:commandButton>
 		<h:commandButton value = "Salvar" action="#{pessoaBeans.salvar}"></h:commandButton>
 		<h:commandButton value = "Remove" action="#{pessoaBeans.remove}"></h:commandButton>
+		<h:commandButton value = "limpar" type="reset"></h:commandButton>
 		</h:panelGroup>
 		
 		<!-- <h:outputLabel value = "Data de Nascimeto"/>
