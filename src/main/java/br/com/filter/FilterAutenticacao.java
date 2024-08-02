@@ -14,9 +14,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import br.com.entidades.Pessoa;
 import br.com.jpautil.JPAUtil;
 
-@WebFilter(urlPatterns = {"*/"})//aula 29.11 - anotação vai interceptar todas as páginas
+@WebFilter(urlPatterns = {"/*"})//aula 29.11 - anotação vai interceptar todas as páginas
 public class FilterAutenticacao implements Filter {
 	
 	@Override
@@ -26,16 +27,17 @@ public class FilterAutenticacao implements Filter {
 
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)//doFilter vai ser execurado em todas as execuções 
-			throws IOException, ServletException {
+			throws IOException, ServletException {//aqui é feita toda a autenticação
 		
 		HttpServletRequest req  = (HttpServletRequest) request;
-		HttpServletResponse resp = (HttpServletResponse) response;
+		//HttpServletResponse resp = (HttpServletResponse) response;
 		HttpSession session = req.getSession();
 		
-		String usuarioLogado = (String) session.getAttribute("usuarioLogado");
+		Pessoa usuarioLogado = (Pessoa) session.getAttribute("usuarioLogado");
+		//String usuarioLogado = (String) session.getAttribute("usuarioLogado");
 		String url = req.getServletPath();
 		
-		if(!url.equalsIgnoreCase("index.jsf") && usuarioLogado == null || usuarioLogado != null && usuarioLogado.trim().isEmpty()) {
+		if(!url.equalsIgnoreCase("index.jsf") && usuarioLogado == null ) {//|| usuarioLogado != null && usuarioLogado.trim().isEmpty()
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsf");
 			dispatcher.forward(request, response);
 			return;

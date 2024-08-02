@@ -16,7 +16,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>Faces Servlet</servlet-name>
-    <url-pattern>/*</url-pattern>
+    <url-pattern>*.jsf</url-pattern>
   </servlet-mapping>
   <mime-mapping>
   	<extension>jsp</extension>
