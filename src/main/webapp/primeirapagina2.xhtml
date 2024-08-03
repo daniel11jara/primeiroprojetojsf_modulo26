@@ -11,7 +11,7 @@
 
 	<h:form id="formPessoa">
 	
-		<h:panelGrid columns = "2">
+		<h:panelGrid columns = "2" rendered="false">
 		<f:facet name="header">
 			<h:outputText value = "Cadastro de Usuário"></h:outputText>
 		</f:facet>
@@ -105,7 +105,7 @@
 			</h:commandLink>
 			</h:column>
 			
-			<h:column>
+			<h:column rendered="">
 			<f:facet name="header">Excluir</f:facet>
 			<h:commandLink  action = "#{pessoaBeans.remove}">
 				<f:setPropertyActionListener value="#{pessoa}" target="#{pessoaBeans.pessoa}"/>
