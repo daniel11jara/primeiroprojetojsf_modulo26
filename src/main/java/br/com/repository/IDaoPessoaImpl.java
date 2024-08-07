@@ -6,7 +6,7 @@ import javax.persistence.EntityTransaction;
 import br.com.entidades.Pessoa;
 import br.com.jpautil.JPAUtil;
 
-public class IDaoPessoaImpl implements IDaoPessoa {
+public class IDaoPessoaImpl implements IDaoPessoa {//aula 29.13
 
 	@Override
 	public Pessoa consultarPessoa(String login, String senha) {//faz a consulta ao banco de dados

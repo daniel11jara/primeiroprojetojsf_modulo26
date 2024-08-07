@@ -10,6 +10,8 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.component.html.HtmlCommandButton;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import br.com.DAO.DaoGeneric;
 import br.com.entidades.Pessoa;
@@ -25,7 +27,7 @@ public class PessoaBeans {
 	private DaoGeneric<Pessoa> daoGeneric = new DaoGeneric<Pessoa>();
 	private List<Pessoa> pessoas = new ArrayList<Pessoa>();//aula 28.17 - lista de pessoas
 	
-	private IDaoPessoa iDaoPessoa = new IDaoPessoaImpl();
+	private IDaoPessoa iDaoPessoa = new IDaoPessoaImpl();//aula 29.13
 	
 	public String salvar() {
 		pessoa = daoGeneric.merge(pessoa);
@@ -84,7 +86,12 @@ public class PessoaBeans {
 			//adicionar o usuario na sessao usuarioLogado
 			FacesContext context = FacesContext.getCurrentInstance();
 			ExternalContext externalContext = context.getExternalContext();
-			externalContext.getSessionMap().put("usuarioLogado", pessoaUser);
+			//externalContext.getSessionMap().put("usuarioLogado", pessoaUser);
+			
+			HttpServletRequest req = (HttpServletRequest) externalContext.getRequest();
+			HttpSession session = req.getSession();
+			
+			session.setAttribute("usuarioLogado", pessoaUser);
 			
 			return "primeirapagina2.jsf";//redirecionando para a primeira página
 		}
