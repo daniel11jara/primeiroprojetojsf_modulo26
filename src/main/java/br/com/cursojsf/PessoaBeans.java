@@ -107,9 +107,10 @@ public class PessoaBeans {
 		return pessoaUser.getPerfilUser().equals(acesso);//dando acesso ao usuário
 	}
 
-	public boolean permiteAcessoAdministrador() {
-        return permiteAcesso("ADMINISTRADOR");
-    }
+	/*
+	 * public boolean permiteAcessoAdministrador() { return
+	 * permiteAcesso("ADMINISTRADOR"); }
+	 */
 	
 	
 

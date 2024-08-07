@@ -11,7 +11,7 @@
 
 	<h:form id="formPessoa">
 	
-		<h:panelGrid columns = "2" rendered="false">
+		<h:panelGrid columns = "2" >
 		<f:facet name="header">
 			<h:outputText value = "Cadastro de Usuário"></h:outputText>
 		</f:facet>
@@ -105,9 +105,9 @@
 			</h:commandLink>
 			</h:column>
 			
-			<h:column >
+			<h:column rendered="#{pessoaBeans.permiteAcesso('ADMINISTRADOR')}">
 			<f:facet name="header">Excluir</f:facet>
-			<h:commandLink  action = "#{pessoaBeans.remove}">
+			<h:commandLink  action = "#{pessoaBeans.remove}" title="Excluir">
 				<f:setPropertyActionListener value="#{pessoa}" target="#{pessoaBeans.pessoa}"/>
 				<h:graphicImage value = "/resources/img/excluir.png"/>
 			</h:commandLink>
