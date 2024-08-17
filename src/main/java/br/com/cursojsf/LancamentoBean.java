@@ -12,13 +12,13 @@ import br.com.DAO.DaoGeneric;
 import br.com.entidades.Lancamento;
 import br.com.entidades.Pessoa;
 
-@ViewScoped
-@ManagedBean(name = "lancamentoBean")
+@ViewScoped// a instancia sera mantida enquanto o usuário estiver na mesma view/página
+@ManagedBean(name = "lancamentoBean")//Faz com que a classe seja gerenciada pelo JSF, permitindo que ela seja referenciada nas páginas JSF pelo nome lancamentoBean.
 public class LancamentoBean {//aula 29.16
 	
-	private Lancamento lancamento = new Lancamento();
-	private DaoGeneric<Lancamento> daoGeneric = new DaoGeneric<Lancamento>();
-	private List<Lancamento> lancamentos = new ArrayList<Lancamento>();
+	private Lancamento lancamento = new Lancamento();//representa o lançamento que está sendo gerenciado.
+	private DaoGeneric<Lancamento> daoGeneric = new DaoGeneric<Lancamento>();// possui métodos para salvar, atualizar, deletar e buscar entidades no banco de dados.
+	private List<Lancamento> lancamentos = new ArrayList<Lancamento>();//usada para armazenar e exibir múltiplos lançamentos na interface.
 	
 	
 	public String salvar() {
@@ -28,6 +28,15 @@ public class LancamentoBean {//aula 29.16
 		Pessoa pessoaUser = (Pessoa)externalContext.getSessionMap().get("usuarioLogado");
 		lancamento.setUsuario(pessoaUser);
 		daoGeneric.salvar(lancamento);
+		return "";
+	}
+	
+	public String novo() {
+		return "";
+	}
+	
+	public String remover() {
+		
 		return "";
 	}
 	
