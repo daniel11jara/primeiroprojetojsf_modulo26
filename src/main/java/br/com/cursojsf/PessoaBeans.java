@@ -99,17 +99,21 @@ public class PessoaBeans {
 		return "index.jsf";
 	}
 
-	/*
-	 * public boolean permiteAcesso(String acesso) {// aula 29.14 
-	 * FacesContext context = FacesContext.getCurrentInstance(); 
-	 * ExternalContext externalContext= context.getExternalContext(); 
-	 * Pessoa pessoaUser = (Pessoa)externalContext.getSessionMap().get("usuarioLogado");// reconhecimento do usuário
-	 * 
-	 * 
-	 * return pessoaUser.getPerfilUser().equals(acesso);// dando acesso ao usuário }
-	 * 
-	 * public boolean permiteAcessoAdministrador() { return
-	 * permiteAcesso("ADMINISTRADOR"); }
-	 */
+	
+	 public boolean permiteAcesso(String acesso) {// aula 29.14 
+	 FacesContext context = FacesContext.getCurrentInstance(); 
+	 ExternalContext externalContext= context.getExternalContext(); 
+	 Pessoa pessoaUser = (Pessoa)externalContext.getSessionMap().get("usuarioLogado");// reconhecimento do usuário
+	  
+	 
+	 return pessoaUser.getPerfilUser().equals(acesso);// dando acesso ao usuário 
+	 
+	 }
+	 
+	 public boolean permiteAcessoAdministrador() { return
+			 permiteAcesso("ADMINISTRADOR"); }
+			 
+			 }
+	 
 
-}
+
