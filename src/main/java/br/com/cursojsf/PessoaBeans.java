@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.bean.ViewScoped;
@@ -77,43 +78,60 @@ public class PessoaBeans {
 		this.pessoas = pessoas;
 	}
 
-	public String logar() {// aula 29.13
+//	public String logar() {// aula 29.13
+//
+//		Pessoa pessoaUser = iDaoPessoa.consultarPessoa(pessoa.getLogin(), pessoa.getSenha());
+//
+//		if (pessoaUser != null) {// achou o usuario
+//
+//			// adicionar o usuario na sessao usuarioLogado
+//			FacesContext context = FacesContext.getCurrentInstance();
+//			ExternalContext externalContext = context.getExternalContext();
+//			// externalContext.getSessionMap().put("usuarioLogado", pessoaUser);
+//
+//			HttpServletRequest req = (HttpServletRequest) externalContext.getRequest();
+//			HttpSession session = req.getSession();
+//
+//			session.setAttribute("usuarioLogado", pessoaUser);
+//
+//			return "primeirapagina2.jsf";// redirecionando para a primeira página
+//		}
+//
+//		return "index.jsf";
+//	}
 
+	public String logar() {
 		Pessoa pessoaUser = iDaoPessoa.consultarPessoa(pessoa.getLogin(), pessoa.getSenha());
 
-		if (pessoaUser != null) {// achou o usuario
-
-			// adicionar o usuario na sessao usuarioLogado
+		if (pessoaUser != null) {
 			FacesContext context = FacesContext.getCurrentInstance();
 			ExternalContext externalContext = context.getExternalContext();
-			// externalContext.getSessionMap().put("usuarioLogado", pessoaUser);
+			externalContext.getSessionMap().put("usuarioLogado", pessoaUser);
 
-			HttpServletRequest req = (HttpServletRequest) externalContext.getRequest();
-			HttpSession session = req.getSession();
-
-			session.setAttribute("usuarioLogado", pessoaUser);
-
-			return "primeirapagina2.jsf";// redirecionando para a primeira página
+			return "primeirapagina2.jsf"; // Redireciona para a página inicial
+		} else {
+			// Adicionar uma mensagem de erro informando que o login falhou
+			FacesContext.getCurrentInstance().addMessage(null,
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Login falhou!", "Usuário ou senha incorretos."));
+			return "index.jsf"; // Redireciona de volta para a página de login
 		}
-
-		return "index.jsf";
 	}
 
-	
-	 public boolean permiteAcesso(String acesso) {// aula 29.14 
-	 FacesContext context = FacesContext.getCurrentInstance(); 
-	 ExternalContext externalContext= context.getExternalContext(); 
-	 Pessoa pessoaUser = (Pessoa)externalContext.getSessionMap().get("usuarioLogado");// reconhecimento do usuário
-	  
-	 
-	 return pessoaUser.getPerfilUser().equals(acesso);// dando acesso ao usuário 
-	 
-	 }
-	 
-	 public boolean permiteAcessoAdministrador() { return
-			 permiteAcesso("ADMINISTRADOR"); }
-			 
-			 }
-	 
+	public boolean permiteAcesso(String acesso) {// aula 29.14
+		FacesContext context = FacesContext.getCurrentInstance();
+		ExternalContext externalContext = context.getExternalContext();
+		Pessoa pessoaUser = (Pessoa) externalContext.getSessionMap().get("usuarioLogado");// reconhecimento do usuário
 
+		if (pessoaUser == null) {
+			return false; // ou lançar uma exceção, dependendo da sua necessidade
+		}
 
+		return pessoaUser.getPerfilUser().equals(acesso);// dando acesso ao usuário
+
+	}
+
+	public boolean permiteAcessoAdministrador() {
+		return permiteAcesso("ADMINISTRADOR");
+	}
+
+}
