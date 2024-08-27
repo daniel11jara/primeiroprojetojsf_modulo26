@@ -28,16 +28,18 @@ public class LancamentoBean {//aula 29.16
 		Pessoa pessoaUser = (Pessoa)externalContext.getSessionMap().get("usuarioLogado");
 		lancamento.setUsuario(pessoaUser);
 		daoGeneric.salvar(lancamento);
-		return "";
+		return "lancamento";
 	}
 	
 	public String novo() {
+		lancamento = new Lancamento(); // Limpar o formulário para um novo lançamento
 		return "";
 	}
 	
 	public String remover() {
-		
-		return "";
+		daoGeneric.delete(lancamento);
+        lancamento = new Lancamento(); // Limpar o formulário
+        return "lancamento"; // Nome da página para redirecionar
 	}
 	
 	public Lancamento getLancamento() {
